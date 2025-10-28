@@ -43,7 +43,7 @@ huggingface-cli download BAAI/bge-m3 --local-dir ./model/bge-m3
 
 手动下载到本地./model/bge-m3
 
-![image-20251027200130094](./index.assets/image-20251027200130094.png)
+![image-20251027200130094](./README.assets/image-20251027200130094.png)
 
 
 
