@@ -1,6 +1,7 @@
 # 常规转化文档:https://docling.com.cn/docling/examples/custom_convert/
 
 import logging
+import sys
 import time
 from pathlib import Path
 
@@ -16,12 +17,22 @@ _log = logging.getLogger(__name__)
 def main():
     logging.basicConfig(level=logging.INFO)
 
+    if len(sys.argv) < 2:
+        print("❌ 使用方法: 程序名 文件名.pdf")
+        print("使用方法: geoCut.exe 文件名.pdf")
+        sys.exit(1)
+
+    pdf_filename = sys.argv[1]
+
     # 目标 PDF（文件名中间有空格）
     # input_doc_path = Path(r"d:\project\geoCut\Extract[16-21]金川集团二矿区1000m中段水平矿柱回采智能监测及对策研究结题报告(打印版) .pdf")
-    input_doc_path = Path(__file__).parent / "金川集团二矿区1000m中段水平矿柱回采智能监测及对策研究结题报告(打印版).pdf"
+    # input_doc_path = Path(__file__).parent / "金川集团二矿区1000m中段水平矿柱回采智能监测及对策研究结题报告(打印版).pdf"
+
+    base_dir = Path(__file__).parent
+    input_doc_path = base_dir / "doc" / pdf_filename
 
     if not input_doc_path.exists():
-        raise FileNotFoundError(f"Input file not found: {input_doc_path}")
+        raise FileNotFoundError(f"未找到文件: {input_doc_path}")
 
     # 配置 PDF 解析管线：启用 OCR（中文）、表格结构识别、CPU 运行
     pipeline_options = PdfPipelineOptions()
@@ -55,7 +66,7 @@ def main():
     _log.info(f"Document converted in {time.time() - start_time:.2f} seconds.")
 
     # 导出到 scratch 目录
-    output_dir = Path("scratch")
+    output_dir = base_dir / "scratch"
     output_dir.mkdir(parents=True, exist_ok=True)
     doc_filename = conv_result.input.file.stem
 
@@ -67,7 +78,7 @@ def main():
     # 导出 Markdown
     md_refs_path = output_dir / f"{doc_filename}-with-image-refs.md"
     conv_result.document.save_as_markdown(md_refs_path, image_mode=ImageRefMode.REFERENCED)
-    print("Saved:")
+    print("已导出 Markdown 文件:")
     print(f"- {md_refs_path}")
     
 
