@@ -4,6 +4,10 @@ from langchain import hub
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain_openai import ChatOpenAI
 from langchain_community.tools.tavily_search import TavilySearchResults
+from dotenv import load_dotenv
+
+env_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+load_dotenv()
 
 llm = ChatOpenAI(
     model="glm-4.6",
@@ -33,5 +37,5 @@ agent_executor = AgentExecutor(
 )
 
 # 执行任务
-result = agent_executor.invoke({"input": "什么是langchain"})
+result = agent_executor.invoke({"input": "什么是llamaindex，哪个更好一点"})
 print(result['output'])

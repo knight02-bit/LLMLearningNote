@@ -26,11 +26,9 @@
 
 
 
-huggingface-cli download已废弃
+使用 `hf download`，访问的是 **镜像 `https://hf-mirror.com`**
 
-使用 `hf download`，访问的是 **镜像 `https://hf-mirror.com`**。
-
-BAAI/bge-m3 模型不是完全公开的，需要 Hugging Face Token 才能访问，还是用了huggingface-cli download
+设置Hugging Face Token
 
 访问：https://huggingface.co/settings/tokens
 
@@ -39,6 +37,7 @@ BAAI/bge-m3 模型不是完全公开的，需要 Hugging Face Token 才能访问
 ```
 export HUGGINGFACE_HUB_TOKEN="你的token"
 huggingface-cli download BAAI/bge-m3 --local-dir ./model/bge-m3
+# 或者hf download BAAI/bge-m3 --local-dir ./model/bge-m3
 ```
 
 手动下载到本地./model/bge-m3

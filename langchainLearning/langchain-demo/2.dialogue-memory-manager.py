@@ -8,6 +8,10 @@ from langchain.prompts import (
 )
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
+from dotenv import load_dotenv
+
+env_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+load_dotenv()
 
 # 创建 LLM
 llm = ChatOpenAI(

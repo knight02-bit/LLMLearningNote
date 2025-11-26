@@ -3,6 +3,10 @@ from langchain import hub
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain.tools import tool
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+
+env_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+load_dotenv()
 
 @tool
 def get_weather(city: str) -> str:

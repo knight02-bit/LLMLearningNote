@@ -3,7 +3,10 @@ import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
+from dotenv import load_dotenv
 
+env_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+load_dotenv()
 # 创建智谱LLM示例
 llm = ChatOpenAI(
     temperature=0.6,

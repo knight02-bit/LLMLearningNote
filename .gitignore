@@ -1,4 +1,6 @@
 .env
-
+*.pyc
+*.sqlite3
+*/__pycache__
 LlamaIndexLearning/model
 LlamaIndexLearning/llamaindex-demo/data
